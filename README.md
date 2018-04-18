@@ -32,7 +32,8 @@ appid=''
 2.City ID and twitter name 
 
 ~~~python
-twitter_name=''
+# replace "-weather-" to emoji, so insert "-weather-" to your name
+name=''
 cityid=''
 ~~~
 
@@ -40,8 +41,9 @@ cityid=''
 
 ~~~python
 # Sample
-# update twitter name at 8:00, 12:00
-scheduler.add_job(job, 'cron', day_of_week='1-7', hour=8, minute=00)
+# update twitter name every 10 minutes
+scheduler.add_job(job, 'interval', seconds=10)
+# at 12:00
 scheduler.add_job(job, 'cron', day_of_week='1-7', hour=12, minute=00)
 ~~~ 
 

@@ -4,7 +4,7 @@ from weather import get_weather,weather_emoji
 def update_twitter_name(consumer_key,consumer_secret,
                         access_token,access_token_secret,
                         cityid,appid,
-                        twitter_name):
+                        name):
     '''
     Update your Twitter name
 
@@ -14,7 +14,7 @@ def update_twitter_name(consumer_key,consumer_secret,
     :param access_token_secret: Twitter app access token secret
     :param cityid: Your city ID
     :param appid: Your OpenWeatherMap API key
-    :param twitter_name: Your Twitter name
+    :param name: Your Twitter name (replace "-weather-" to emoji)
     :return:
     '''
 
@@ -26,6 +26,6 @@ def update_twitter_name(consumer_key,consumer_secret,
     weather_data = get_weather(cityid,appid)
     emoji = weather_emoji(weather_data)
 
-    name = twitter_name + emoji
+    twitter_name = name.replace("-weather-",emoji)
 
-    api.update_profile(name=name)
+    return api.update_profile(name=twitter_name)
