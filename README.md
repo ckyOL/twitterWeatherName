@@ -33,3 +33,12 @@ Schedule:
   unit: minutes
   time: 1
 ~~~
+
+# Docker
+
+~~~
+docker pull ckyol/twitter-weather-name
+
+docker run --name twitter-name -v /etc/config.yaml:/usr/src/app/config.yaml -d ckyol/twitter-weather-name
+~~~
+
