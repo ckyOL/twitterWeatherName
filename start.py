@@ -1,17 +1,25 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 from twitter_name import update_twitter_name
 import time
+import yaml
+
+# Load config
+config_file = open('config.yaml')
+config = yaml.load(config_file)
 
 # Twitter
-consumer_key=''
-consumer_secret=''
-access_token=''
-access_token_secret=''
-# replace "-weather-" to emoji, so insert "-weather-" to your name
-name="xx-weather-xx"
+consumer_key = config['Twitter']['consumer_key']
+consumer_secret = config['Twitter']['consumer_secret']
+access_token = config['Twitter']['access_token']
+access_token_secret = config['Twitter']['access_token_secret']
+name = config['Twitter']['name']
 # OpenWeatherMap
-cityid=''
-appid=''
+cityid = config['OpenWeatherMap']['cityid']
+appid = config['OpenWeatherMap']['appid']
+# Schedule
+method = config['Schedule']['method']
+unit = config['Schedule']['unit']
+times = config['Schedule']['time']
 
 def job():
     """
@@ -29,10 +37,12 @@ def job():
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
 
 scheduler = BlockingScheduler()
-# Sample
-# update twitter name every 10 seconds
-scheduler.add_job(job, 'interval', seconds=10)
-# at 12:00
-#scheduler.add_job(job, 'cron', day_of_week='1-7', hour=12, minute=00)
+if method == 'interval':
+    if unit == 'seconds':
+        scheduler.add_job(job, 'interval', seconds=times)
+    elif unit == 'minutes':
+        scheduler.add_job(job, 'interval', minutes=times)
+    elif unit == 'hours':
+        scheduler.add_job(job, 'interval', hours=times)
 
 scheduler.start()

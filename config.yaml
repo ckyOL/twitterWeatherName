@@ -1,0 +1,14 @@
+Twitter:
+  consumer_key:
+  consumer_secret:
+  access_token:
+  access_token_secret:
+  # replace "-weather-" to emoji, so insert "-weather-" to your name
+  name: xx-weather-xx
+OpenWeatherMap:
+  cityid:
+  appid:
+Schedule:
+  method: interval
+  unit: minutes
+  time: 1
