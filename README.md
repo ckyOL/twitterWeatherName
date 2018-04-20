@@ -15,35 +15,21 @@ pip install -r requirements.txt
 
 # How to use
 
-In start.py:
+In config.yaml:
 
-1.Twitter app and OpenWeatherMap API key 
-
-~~~python
-# Twitter
-consumer_key=''
-consumer_secret=''
-access_token=''
-access_token_secret=''
-# OpenWeatherMap
-appid=''
+~~~yaml
+Twitter:
+  consumer_key:
+  consumer_secret:
+  access_token:
+  access_token_secret:
+  # replace "-weather-" to emoji, so insert "-weather-" to your name
+  name: xx-weather-xx
+OpenWeatherMap:
+  cityid:
+  appid:
+Schedule:
+  method: interval
+  unit: minutes
+  time: 1
 ~~~
-
-2.City ID and twitter name 
-
-~~~python
-# replace "-weather-" to emoji, so insert "-weather-" to your name
-name=''
-cityid=''
-~~~
-
-3.Schedule
-
-~~~python
-# Sample
-# update twitter name every 10 minutes
-scheduler.add_job(job, 'interval', seconds=10)
-# at 12:00
-scheduler.add_job(job, 'cron', day_of_week='1-7', hour=12, minute=00)
-~~~ 
-
